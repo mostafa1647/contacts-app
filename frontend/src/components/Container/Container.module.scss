@@ -1,0 +1,23 @@
+@import "../../assets/styles/vars";
+
+.container {
+	width: 100%;
+	max-width: calc(100% - 32px);
+	margin: 0 auto;
+
+	@include media-min(sm) {
+		max-width: 540px;
+	}
+
+	@include media-min(md) {
+		max-width: 720px;
+	}
+
+	@include media-min(lg) {
+		max-width: 960px;
+	}
+
+	@include media-min(xl) {
+		max-width: 1140px;
+	}
+}
