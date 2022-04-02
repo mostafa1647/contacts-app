@@ -1,0 +1,23 @@
+@import "../../assets/styles/vars";
+
+.footer {
+	.content {
+		margin: 0;
+		line-height: 30px;
+		text-align: center;
+	}
+
+	.link {
+		fill: $color2;
+	}
+
+	.icon {
+		width: 14px;
+		height: 14px;
+	}
+
+	.link2 {
+		color: #00d170;
+		fill: #00d170;
+	}
+}
