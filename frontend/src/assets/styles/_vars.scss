@@ -1,0 +1,24 @@
+// using this color palette for application
+// https://coolors.co/d8f3dc-40916c-1b4332-081c15
+
+$color1: #d8f3dc; // Nyanza
+$color2: #40916c; // Illuminating Emerald
+$color3: #1b4332; // MSU Green
+$color4: #081c15; // Dark Jungle Green
+$white: #ffffff; // white
+
+$headerHeight: 64px;
+
+$borderColor: #d9d9d9;
+$borderRadius: 10px;
+
+$breakPoints: (
+	xs: '480px',
+	sm: '576px',
+	md: '768px',
+	lg: '992px',
+	xl: '1200px',
+	xxl: '1600px'
+);
+
+@import "mixins";
