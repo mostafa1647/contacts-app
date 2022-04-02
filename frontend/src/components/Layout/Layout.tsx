@@ -11,7 +11,7 @@ const {
 	Footer: AntdFooter,
 } = AntdLayout;
 
-const Layout: FC = () => {
+const Layout: FC = (): JSX.Element => {
 	return (
 		<>
 			<AntdLayout
