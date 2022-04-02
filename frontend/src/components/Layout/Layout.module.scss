@@ -1,0 +1,18 @@
+@import "../../assets/styles/vars";
+
+.layout {
+	&.ant-layout {
+		min-height: 100vh;
+	}
+
+	.header {
+		background: $color4;
+		color: $color1;
+	}
+
+	.footer {
+		margin-top: auto;
+		background: $color4;
+		color: $color1;
+	}
+}
