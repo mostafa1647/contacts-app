@@ -6,7 +6,7 @@ interface LoadingSkeleton {
 	ContactsList: typeof ContactsList;
 }
 
-declare const LoadingSkeletons: LoadingSkeleton;
+const LoadingSkeletons: LoadingSkeleton = { SingleContact, ContactsList };
 
 export { SingleContact, ContactsList };
 export default LoadingSkeletons;
