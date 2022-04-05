@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from "react";
+import type { FC } from "react";
 import { Result, Space } from "antd";
 
 interface ErrorProps {
