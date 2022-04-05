@@ -1,0 +1,95 @@
+@import "../../assets/styles/vars";
+
+.article {
+	margin-top: 50px;
+	margin-bottom: 50px;
+
+	.profile {
+		border-left: 2px solid $borderColor;
+		border-right: 2px solid $borderColor;
+		border-bottom: 2px solid $borderColor;
+		border-radius: $borderRadius;
+
+		.banner {
+			border-top-left-radius: $borderRadius;
+			border-top-right-radius: $borderRadius;
+			height: 200px;
+			width: 100%;
+			background: rgb(8, 28, 21);
+			background: -moz-linear-gradient(23deg, rgba(8, 28, 21, 1) 0%, rgba(27, 67, 50, 1) 50%, rgba(64, 145, 108, 1) 100%);
+			background: -webkit-linear-gradient(23deg, rgba(8, 28, 21, 1) 0%, rgba(27, 67, 50, 1) 50%, rgba(64, 145, 108, 1) 100%);
+			background: linear-gradient(23deg, rgba(8, 28, 21, 1) 0%, rgba(27, 67, 50, 1) 50%, rgba(64, 145, 108, 1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#081c15", endColorstr="#40916c", GradientType=1);
+			position: relative;
+
+			.avatarWrapper {
+				position: absolute;
+				bottom: -75px;
+				left: 10%;
+
+				@include media-max(sm) {
+					left: calc(50% - 75px);
+				}
+
+				.avatar {
+					border: 2px solid $white;
+					background: $white;
+					box-shadow: 0 2px 10px 0 $color4;
+				}
+			}
+		}
+
+		.userInfo {
+			max-width: 80%;
+			margin: 0 auto;
+			padding-top: 90px;
+			padding-bottom: 30px;
+
+			.icon {
+				margin: 0 5px;
+				color: $color3;
+
+				&.telegram {
+					svg {
+						fill: $color3;
+						width: 14px;
+						height: 14px;
+					}
+				}
+			}
+
+			.userFullName {
+				color: $color4;
+				margin-bottom: 15px;
+				@include media-max(sm) {
+					text-align: center;
+				}
+			}
+
+			.userProfileInfo {
+				margin-bottom: 5px;
+
+				a,
+				.content {
+					color: $color3;
+					font-weight: 700;
+				}
+
+				address {
+					margin-bottom: 5px;
+					display: inline-block;
+				}
+
+				&.note {
+					@include flex(row, flex-start, flex-start);
+
+					p {
+						margin: 0;
+						text-align: justify;
+					}
+				}
+			}
+		}
+	}
+
+}
