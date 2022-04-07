@@ -6,7 +6,7 @@ import { getSingleContact } from "../../utils/api/queries/single-contact";
 import { ContactDto } from "../../utils/api/dto/contacts.dto";
 import Error from "../../components/Error";
 import Container from "../../components/Container";
-import { Avatar, Form } from "antd";
+import { Avatar } from "antd";
 import LoadingSkeletons from "../../components/LoadingSkeletons";
 import {
 	BankOutlined,

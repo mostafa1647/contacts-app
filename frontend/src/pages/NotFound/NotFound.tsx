@@ -11,7 +11,6 @@ const NotFound: FC = (): JSX.Element => {
 			title="404"
 			subTitle="Sorry, the page you visited does not exist."
 			extra={
-				// TODO: button in ant.design shows spin in ts, check why is that and fix it
 				<Button
 					type="primary"
 					onClick={() => navigate("/", { replace: true })}>

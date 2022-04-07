@@ -1,0 +1,63 @@
+@import "../../assets/styles/vars";
+
+.listWrapper {
+	max-width: 328px;
+	margin: 40px auto 40px 67px;
+
+	@include media-max(sm) {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.list {
+		@include flex(row, flex-start, center);
+		flex-wrap: wrap;
+
+		@include media-max(sm) {
+			justify-content: center;
+		}
+
+		.listItem {
+			margin-left: 12px;
+			margin-right: 12px;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			.avatarWrapper {
+				.avatar {
+					border: 2px solid $white;
+					background: $white;
+					box-shadow: 0 2px 10px 0 #081c1591;
+					width: 64px;
+					height: 64px;
+
+					@include media-max(sm) {
+						width: 54px;
+						height: 54px;
+					}
+
+					@include media-max(xs) {
+						width: 44px;
+						height: 44px;
+					}
+
+				}
+			}
+
+			.infoWrapper {
+				.name {
+					text-align: center;
+					color: $color4;
+					font-weight: 500;
+					margin: 10px auto 0;
+				}
+			}
+		}
+	}
+}
