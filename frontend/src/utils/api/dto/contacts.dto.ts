@@ -24,12 +24,14 @@ export interface ContactDto {
 	id: number;
 }
 
+export interface ContactsListMeta {
+	skipped?: number;
+	limit?: number;
+	total?: number;
+	criteria?: any;
+}
+
 export interface ContactsListDto {
-	meta: {
-		skipped?: number;
-		limit?: number;
-		total?: number;
-		criteria?: any;
-	};
+	meta: ContactsListMeta;
 	items: ContactDto[];
 }

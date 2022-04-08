@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getSingleContact } from "../../utils/api/queries/single-contact";
 import { ContactDto } from "../../utils/api/dto/contacts.dto";
-import Error from "../../components/Error";
+import ErrorComponent from "../../components/Error";
 import Container from "../../components/Container";
 import { Avatar } from "antd";
 import LoadingSkeletons from "../../components/LoadingSkeletons";
@@ -36,9 +36,9 @@ const SingleContact: FC = (): JSX.Element => {
 		return (
 			<Container>
 				<article className={styleClasses.article}>
-					<Error
-						title={"Error While Getting Contact Info"}
-						message={error.message}
+					<ErrorComponent
+						title={"ErrorComponent While Getting Contact Info"}
+						message={(error as Error).message}
 					/>
 				</article>
 			</Container>

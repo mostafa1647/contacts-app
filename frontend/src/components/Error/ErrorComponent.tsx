@@ -6,7 +6,7 @@ interface ErrorProps {
 	message: string;
 }
 
-const Error: FC<ErrorProps> = ({ title, message }): JSX.Element => (
+const ErrorComponent: FC<ErrorProps> = ({ title, message }): JSX.Element => (
 	<Space
 		direction={"vertical"}
 		size={"large"}
@@ -17,4 +17,4 @@ const Error: FC<ErrorProps> = ({ title, message }): JSX.Element => (
 	</Space>
 );
 
-export default Error;
+export default ErrorComponent;
