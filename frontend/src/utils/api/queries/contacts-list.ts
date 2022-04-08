@@ -4,7 +4,7 @@ import { ContactsListDto } from "../dto/contacts.dto";
 export const getListOfContacts = async (
 	limit: number | null = 30,
 	skip: number | null = 10
-): Promise<ContactsListDto | null | Error> => {
+): Promise<ContactsListDto | null> => {
 	try {
 		const { data: contactsList }: { data: ContactsListDto } = await axios({
 			method: "get",

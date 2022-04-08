@@ -1,25 +1,17 @@
 import type { FC } from "react";
 import { useQuery, useQueryClient } from "react-query";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { UpdateLimitMeta } from "../SearchResults";
 import { useLocalStorage } from "usehooks-ts";
 import { ContactDto, ContactsListDto } from "../../utils/api/dto/contacts.dto";
 import { recentContactsLocalStorageKey } from "../../utils/common/keys";
-import { useSearchParams } from "react-router-dom";
-import {
-	searchContactsByName,
-	searchContactsByPhone,
-} from "../../utils/api/queries/search-contacts";
-import ErrorComponent from "../Error";
+import { getListOfContacts } from "../../utils/api/queries/contacts-list";
+import Error from "../Error";
 import LoadingSkeletons from "../LoadingSkeletons";
 import ContactsList from "../ContactsList";
 import { addRecentContact } from "../../utils/common/recent-contacts";
 
-export interface UpdateLimitMeta {
-	updatingDuoToLimitChange: boolean;
-	oldLimit: number;
-}
-
-const SearchResults: FC = (): JSX.Element => {
+const ListAllContacts: FC = (): JSX.Element => {
 	// get query client from react query
 	const queryClient = useQueryClient();
 
@@ -37,53 +29,29 @@ const SearchResults: FC = (): JSX.Element => {
 		[]
 	);
 
-	// get search params from url
-	const [searchParams] = useSearchParams();
-	const [phone, name] = [searchParams.get("phone"), searchParams.get("name")];
-
-	const searchContactsHandler = useCallback(
-		async (
-			limit: number,
-			skip: number
-		): Promise<ContactsListDto | null> => {
-			if (phone)
-				/**
-				 * replacing @ with + in phone
-				 * @see SearchContacts
-				 */
-				return await searchContactsByPhone(
-					phone.replace(/@/g, "+"),
-					skip,
-					limit
-				);
-			else if (name) return await searchContactsByName(name, skip, limit);
-			else throw new Error("Search parameters are invalid!");
-		},
-		[name, phone]
-	);
-
 	// server connection
 	const {
 		data: contacts,
 		error,
 		isLoading,
-		refetch: reFetchSearchQuery,
 	} = useQuery<ContactsListDto | null, Error>(
-		["searchListOfContacts", page],
-		async () => await searchContactsHandler(limit, (page - 1) * limit),
-		{ keepPreviousData: true, staleTime: 10000 }
+		["listOfContacts", page],
+		async () => await getListOfContacts(limit, (page - 1) * limit),
+		{
+			keepPreviousData: true,
+			staleTime: 10000,
+		}
 	);
 
 	// effects
-	// update limit and skip meta
 	useEffect(() => {
 		// check if limit is updated or not
 		if (updateLimitMeta.updatingDuoToLimitChange)
 			// if limit is updated we still should keep old skip
 			queryClient.fetchQuery(
-				["searchListOfContacts", page],
+				["listOfContacts", page],
 				async () =>
-					await searchContactsHandler(
+					await getListOfContacts(
 						limit,
 						(page - 1) * updateLimitMeta.oldLimit
 					)
@@ -91,28 +59,21 @@ const SearchResults: FC = (): JSX.Element => {
 		// if limit is not updated then we should load next page so skip will be updated
 		else
 			queryClient.fetchQuery(
-				["searchListOfContacts", page],
-				async () =>
-					await searchContactsHandler(limit, (page - 1) * limit)
+				["listOfContacts", page],
+				async () => await getListOfContacts(limit, (page - 1) * limit)
 			);
 	}, [
-		limit,
 		page,
-		queryClient,
-		searchContactsHandler,
-		updateLimitMeta.oldLimit,
+		limit,
 		updateLimitMeta.updatingDuoToLimitChange,
+		updateLimitMeta.oldLimit,
+		queryClient,
 	]);
-
-	// we should refetch search query on phone or name update
-	useEffect(() => {
-		reFetchSearchQuery();
-	}, [name, phone, reFetchSearchQuery]);
 
 	if (error)
 		return (
-			<ErrorComponent
-				title={"ErrorComponent While Getting Contacts List"}
+			<Error
+				title={"Error While Getting Contacts List"}
 				message={error.message}
 			/>
 		);
@@ -140,4 +101,4 @@ const SearchResults: FC = (): JSX.Element => {
 	);
 };
 
-export default SearchResults;
+export default ListAllContacts;
