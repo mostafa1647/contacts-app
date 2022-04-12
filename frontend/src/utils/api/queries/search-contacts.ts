@@ -6,7 +6,7 @@ export const searchContactsByPhone = async (
 	phone: string,
 	skip: number | null = 0,
 	limit: number | null = 30
-): Promise<ContactsListDto | null | Error> => {
+): Promise<ContactsListDto | null> => {
 	if (!phone || !phoneRegex.test(phone))
 		throw new Error("Please provide valid phone");
 
@@ -36,7 +36,7 @@ export const searchContactsByName = async (
 	name: string,
 	skip: number | null = 0,
 	limit: number | null = 30
-): Promise<ContactsListDto | null | Error> => {
+): Promise<ContactsListDto | null> => {
 	if (!name) throw new Error("Please provide valid name");
 
 	try {

@@ -3,7 +3,7 @@ import { ContactDto } from "../dto/contacts.dto";
 
 export const getSingleContact = async (
 	contactId: string
-): Promise<ContactDto | null | Error> => {
+): Promise<ContactDto | null> => {
 	try {
 		const { data }: { data: ContactDto } = await axios({
 			method: "get",
