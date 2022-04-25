@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  database:
+    image: 'mongo'
+    container_name: 'contacts-app-db'
+    ports:
+      - "27017:27017"
+    volumes:
+      - contacts-app-data:/data/db
+    env_file:
+      - mongo.env
+volumes:
+  contacts-app-data:
