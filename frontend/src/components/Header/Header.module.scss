@@ -1,0 +1,27 @@
+@import "../../assets/styles/vars";
+
+.header {
+	.logo {
+		.logoLink {
+			padding: 0 30px;
+			@include flex(row, flex-start, center);
+			height: $headerHeight;
+
+			@include media-max(sm) {
+				justify-content: center;
+			}
+
+			.logoImage {
+				width: 40px;
+				height: auto;
+				margin: 0 5px;
+			}
+
+			.logoText {
+				color: #61dafb;
+				font-size: 22px;
+				font-weight: 700;
+			}
+		}
+	}
+}

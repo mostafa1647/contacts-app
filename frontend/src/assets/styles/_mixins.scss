@@ -1,0 +1,18 @@
+@mixin media-max($size) {
+	@media screen and (max-width: map-get($breakPoints, $size)) {
+		@content
+	}
+}
+
+@mixin media-min($size) {
+	@media screen and (min-width: map-get($breakPoints, $size)) {
+		@content
+	}
+}
+
+@mixin flex($dir: row, $jus: center, $al: center) {
+	display: flex;
+	flex-direction: $dir;
+	justify-content: $jus;
+	align-items: $al;
+}
